@@ -1,4 +1,4 @@
-# mt-plugin-MarkdownItField
+# mt-plugin-TipTapField
 
 Movable Type 7 ContentField TipTap Editor Plugin
 
