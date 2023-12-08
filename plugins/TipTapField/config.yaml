@@ -1,0 +1,44 @@
+id: TipTapField
+name: TipTapField
+version: 1.0.0
+author_name: redamoon
+author_link: https://www.redamoon.net/
+description: <__trans phrase="This plugin adds a tiptap field type.">
+l10n_lexicon:
+    ja:
+        This plugin adds a TipTap field type.: "TipTapのフィールドを追加"
+        TipTap: TipTap Editor
+        Body: 本文
+        Preview: HTMLプレビュー
+        Body Label: TipTapのラベル
+        Preview Label: HTMLプレビューのラベル
+content_field_types:
+    tiptap:
+        label: TipTap
+        data_type: 'text'
+        order: 210
+        icon_class: 'ic_multiline'
+        can_data_label_field: 0
+        data_load_handler: $TipTapField::TipTapField::ContentFieldType::TipTapField::data_load_handler
+        field_html: 'field_html/field_html_tiptap.tmpl'
+        field_html_params: $TipTapField::TipTapField::ContentFieldType::TipTapField::field_html_params
+        field_value_handler: $TipTapField::TipTapField::ContentFieldType::TipTapField::field_value_handler
+        replaceable: 1
+        tag_handler: $TipTapField::TipTapField::ContentFieldType::TipTapField::tag_handler
+        feed_value_handler: $TipTapField::TipTapField::ContentFieldType::TipTapField::feed_value_handler
+        preview_handler: $TipTapField::TipTapField::ContentFieldType::TipTapField::preview_handler
+        replace_handler: $TipTapField::TipTapField::ContentFieldType::TipTapField::replace_handler
+        search_handler: $TipTapField::TipTapField::ContentFieldType::TipTapField::search_handler
+        list_props:
+            tiptap:
+                base: '__virtual.string'
+                col: 'value_varchar'
+                display: 'none'
+                filter_editable: 0
+                html: $TipTapField::TipTapField::ContentFieldType::TipTapField::list_prop_html
+                terms: $TipTapField::TipTapField::ContentFieldType::TipTapField::list_prop_terms
+        options_html: 'content_field_type_options/tiptap.tmpl'
+        options:
+            - label
+            - description
+            - required

@@ -1,0 +1,75 @@
+<div
+  id="tiptap-field-<mt:var name="content_field_id" escape="html">"
+  class="tiptap-field-container"
+  <mt:var name="required" />
+>
+<mt:loop name="tiptap_data">
+    <div class="mt-draggable">
+      <div class="col text-wrap">
+        <div class="mt-draggable__content tiptap_data">
+              <div class="tiptap-editor-<mt:var name="content_field_id" escape="html">"></div>
+          <script type="module">
+            import { Editor } from 'https://esm.sh/@tiptap/core'
+            import StarterKit from 'https://esm.sh/@tiptap/starter-kit'
+
+            const editor = new Editor({
+              element: document.querySelector('.tiptap-editor-<mt:var name="content_field_id" escape="html">'),
+              extensions: [
+                StarterKit,
+              ],
+              content: '<mt:Var name="body" />',
+              onUpdate({ editor }) {
+               const html = editor.getHTML()
+               document.querySelector('textarea[name="tiptap-field-<mt:Var name="content_field_id" escape="html" />-body"]').value = html;
+              }
+            })
+          </script>
+          <p class="mb-3 mt-3">
+            <button
+              class="btn btn-primary"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#tiptap-body-<mt:Var name="content_field_id" escape="html" />"
+              aria-expanded="false"
+              aria-controls="#tiptap-body-<mt:Var name="content_field_id" escape="html" />"
+            >
+               保存データ
+            </button>
+          </p>
+          <div class="collapse" id="tiptap-body-<mt:Var name="content_field_id" escape="html" />">
+            <textarea name="tiptap-field-<mt:Var name="content_field_id" escape="html" />-body" class="form-control" rows="3" mt:watch-change="1"><mt:Var name="body" escape="html" /></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+</mt:loop>
+
+<mt:unless name="setup_tiptap_js">
+  <mt:var name="setup_tiptap_js" value="1">
+  <style>
+    .tiptap {
+        display: block;
+        width: 100%;
+        min-height: 300px;
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        font-weight: normal;
+        line-height: 1.5;
+        color: #212529;
+        background-color: #FFFFFF;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        border-radius: 0.375rem;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+    .tiptap:focus {
+        outline: none;
+    }
+    textarea[name="tiptap-field-<mt:var name="content_field_id" escape="html">-body"] {
+      height: 250px;
+    }
+  </style>
+</mt:unless>
