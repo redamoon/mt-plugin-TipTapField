@@ -24,8 +24,8 @@ jobs:
         curl -L https://cpanmin.us | perl - App::cpanminus
         echo "$HOME/perl5/bin" >> $GITHUB_PATH
 
-    - name: Install Dependencies
-      run: cpanm --installdeps . --with-develop
+    - name: Install Test Dependencies
+      run: cpanm Test::More Test::MockObject Test::MockModule
 
     - name: Run Tests
       run: prove -lv t/
