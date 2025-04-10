@@ -1,0 +1,31 @@
+name: Perl Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Perl
+      uses: shogo82148/actions-setup-perl@v1
+      with:
+        perl-version: '5.38' # Specify a recent Perl version
+
+    - name: Install cpanm
+      run: |
+        curl -L https://cpanmin.us | perl - App::cpanminus
+        echo "$HOME/perl5/bin" >> $GITHUB_PATH
+
+    - name: Install Dependencies
+      run: cpanm --installdeps . --with-develop
+
+    - name: Run Tests
+      run: prove -lv t/
